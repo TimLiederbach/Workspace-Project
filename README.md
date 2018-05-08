@@ -33,11 +33,13 @@ The Workspaces app shows a list of work-friendly locations such as libraries, ca
 ## Wireframes
 
 ### Home Page
-
+![Homepage wireframe image](.public/homeScreen.png)
 ### Login Page
+![Login wireframe image](./public/login-register.png)
 ### Main Page
-### View Space
-### Add Space / Edit Space
+![Workspaces Database Schema Image](./public/homeScreen.png)
+### View / Edit / Delete Space
+/public/landingPage---Wireframe-cc-Premium.pdf
 ## Database Schema
 ![Workspaces Database Schema Image](./public/Workspace-ERD.png)
 ## Components
