@@ -33,15 +33,15 @@ The Workspaces app shows a list of work-friendly locations such as libraries, ca
 ## Wireframes
 
 ### Home Page
-![Homepage wireframe image](.public/homeScreen.png)
+![](./public/homeScreen.png)
 ### Login Page
-![Login wireframe image](./public/login-register.png)
+![](./public/login-register.png)
 ### Main Page
-![Workspaces Database Schema Image](./public/homeScreen.png)
+![](./public/homeScreen.png)
 ### View / Edit / Delete Space
-/public/landingPage---Wireframe-cc-Premium.pdf
+![](./public/landingPage---Wireframe-cc-Premium.pdf)
 ## Database Schema
-![Workspaces Database Schema Image](./public/Workspace-ERD.png)
+![](./public/Workspace-ERD.png)
 ## Components
 Home page
 Login/register page
