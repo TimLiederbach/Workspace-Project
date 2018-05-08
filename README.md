@@ -33,7 +33,7 @@ The Workspaces app shows a list of work-friendly locations such as libraries, ca
 ## Wireframes
 
 ### Home Page
-![alt text](http://url/to/img.png or relative file path)
+
 ### Login Page
 ### Main Page
 ### View Space
