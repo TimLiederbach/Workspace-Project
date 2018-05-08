@@ -6,10 +6,6 @@ Workspace reviews you can trust! Powered by the community.
 Table of Contents
 =================
 
-   * [Workspace-Project](#workspace-project)
-   * [Workspaces](#workspaces)
-         * [Live (url): tbd](#live-url-tbd)
-            * [Team: Jhedi, Linda, Michele, Tim.](#team-jhedi-linda-michele-tim)
    * [Table of Contents](#table-of-contents)
          * [Overview](#overview)
       * [Wireframes](#wireframes)
@@ -35,12 +31,15 @@ Table of Contents
 ### Overview
 The Workspaces app shows a list of work-friendly locations such as libraries, cafes and parks. Each location is sourced from app users who include rankings on categories such as noise level, wi-fi speed, dog-friendliness, among others.
 ## Wireframes
+
 ### Home Page
+![alt text](http://url/to/img.png or relative file path)
 ### Login Page
 ### Main Page
 ### View Space
 ### Add Space / Edit Space
 ## Database Schema
+![Workspaces Database Schema Image](./public/Workspace-ERD.png)
 ## Components
 Home page
 Login/register page
