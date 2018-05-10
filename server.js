@@ -21,9 +21,9 @@ app.get('/', (req, res) => {
   res.send('hi')
 })
 
-app.use('/workspaces', workspaceRouter);
+//app.use('/workspaces', workspaceRouter);
 
-// app.use('/api/quotes', quotesRouter);
+app.use('/api/workspaces', workspaceRouter);
 
 
 
