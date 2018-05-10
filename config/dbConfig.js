@@ -1,0 +1,5 @@
+module.export = process.env.DATABASE_URL || {
+  host: 'localhost',
+  port: 5432,
+  database: 'workspaces_db'
+}
