@@ -14,11 +14,16 @@ function getOne(id) {
   );
 }
 
-// function create() {
-//   return queryPromise = db.one(`
-//     INSERT INTO
-//   `, )
-// }
+function create(workspace) {
+  return queryPromise = db.one(`
+    INSERT INTO workspaces
+    (creator_id, w_name, address, photo, type_of_space, power_outlets, noise_level, wifi_speed, dogfriendly, comments, overall_rating)
+    VALUES
+    ($/creator_id/, $/w_name/, $/address/, $/photo/, $/type_of_space/, $/power_outlets/, $/noise_level/, $/wifi_speed/, $/dogfriendly/, $/comments/, $/overall_rating/)
+    RETURNING *
+    `, workspace
+    );
+}
 
 // function update() {
 //   return queryPromise = db.one(`
@@ -32,6 +37,6 @@ function getOne(id) {
 
 module.exports = {
   getAll,
+  create,
   getOne
-
 };

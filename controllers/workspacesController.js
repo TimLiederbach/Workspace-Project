@@ -21,14 +21,14 @@ function getOne(req, res, next) {
     .catch(next);
 }
 
-// function create(req, res, next) {
-//   workspaceDb.create(req.body)
-//     .then(data=> {
-//       res.locals.___ = data;
-//       next();
-//     })
-//     .catch(next);
-// }
+function create(req, res, next) {
+  workspaceDb.create(req.body)
+    .then(data=> {
+      res.locals.workspace = data;
+      next();
+    })
+    .catch(next);
+}
 
 // function destroy(req, res, next) {
 //   workspaceDb.destroy(req.params.id)
@@ -40,6 +40,6 @@ function getOne(req, res, next) {
 
 module.exports = {
   getAll,
+  create,
   getOne
-
 };
