@@ -10,16 +10,16 @@ workspaceRouter.route('/')
   )
   // .post(
   //   workspaceController.create,
-  //   // responseController.sendOkResponse,
-  //   // responseController.sendErrorResponse
+  //   responseController.sendOkResponse,
+  //   responseController.sendErrorResponse
   // );
 
-  // workspaceRouter.route('/:id')
-  // .get(
-  //   workspaceController.getOne,
-  //   // responseController.sendOkResponse,
-  //   // responseController.sendErrorResponse
-  // )
+  workspaceRouter.route('/:id')
+  .get(
+    workspaceController.getOne,
+    responseController.sendOkResponse,
+    responseController.sendErrorResponse
+  )
   // .put(
   //   workspaceController.update,
   //   // responseController.sendOkResponse,
