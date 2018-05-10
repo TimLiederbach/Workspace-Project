@@ -30,13 +30,16 @@ function create(workspace) {
 //   `)
 // }
 
-// function destroy() {
-//   return queryPromise = db.one(`
-//   `)
-// }
+function destroy(id) {
+  return queryPromise = db.none(`
+    DELETE FROM workspaces WHERE w_id = $1
+    `, id
+  );
+}
 
 module.exports = {
   getAll,
   create,
-  getOne
+  getOne,
+  destroy
 };

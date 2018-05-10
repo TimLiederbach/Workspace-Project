@@ -23,14 +23,14 @@ workspaceRouter.route('/')
   )
   // .put(
   //   workspaceController.update,
-  //   // responseController.sendOkResponse,
-  //   // responseController.sendErrorResponse
+  //   responseController.sendOkResponse,
+  //   responseController.sendErrorResponse
   // )
-  // .delete(
-  //   workspaceController.destroy,
-  //   // responseController.sendOkResponse,
-  //   // responseController.sendErrorResponse
-  // )
+  .delete(
+    workspaceController.destroy,
+    responseController.sendOkResponse,
+    responseController.sendErrorResponse
+  )
 
 module.exports = workspaceRouter;
 

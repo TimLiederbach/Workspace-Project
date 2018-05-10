@@ -30,16 +30,17 @@ function create(req, res, next) {
     .catch(next);
 }
 
-// function destroy(req, res, next) {
-//   workspaceDb.destroy(req.params.id)
-//     .then(()=>{
-//       next()
-//     })
-//     .catch(next);
-// }
+function destroy(req, res, next) {
+  workspaceDb.destroy(req.params.id)
+    .then(()=>{
+      next()
+    })
+    .catch(next);
+}
 
 module.exports = {
   getAll,
   create,
-  getOne
+  getOne,
+  destroy
 };
