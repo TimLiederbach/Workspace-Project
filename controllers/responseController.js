@@ -1,7 +1,7 @@
 function sendOkResponse(req, res) {
   res.json({
     status: 'ok',
-    data: res.locals.workspaces || res.locals.workspaces
+    data: res.locals.workspace || res.locals.workspaces
   })
 }
 
