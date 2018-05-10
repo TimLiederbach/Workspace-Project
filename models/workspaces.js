@@ -25,18 +25,28 @@ function create(workspace) {
     );
 }
 
-// function update() {
-//   return queryPromise = db.one(`
-//   `)
-// }
+function update(workspace) {
+  return queryPromise = db.one(`
+    UPDATE workspaces
+    SET w_name = $/w_name/,
+    address = $/address/,
+    photo = $/photo/,
+    type_of_space = $/type_of_space/,
+    power_outlets = $/power_outlets/,
+    noise_level = $/noise_level/,
+    wifi_speed = $/wifi_speed/,
+    dogfriendly = $/dogfriendly/,
+    comments = $/comments/,
+    overall_rating = $/overall_rating/
+    WHERE w_id = $/w_id/
+    RETURNING *
+    `, workspace);
+}
 
-// function destroy() {
-//   return queryPromise = db.one(`
-//   `)
-// }
 
 module.exports = {
   getAll,
   create,
-  getOne
+  getOne,
+  update
 };

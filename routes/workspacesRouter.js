@@ -21,11 +21,11 @@ workspaceRouter.route('/')
     responseController.sendOkResponse,
     responseController.sendErrorResponse
   )
-  // .put(
-  //   workspaceController.update,
-  //   // responseController.sendOkResponse,
-  //   // responseController.sendErrorResponse
-  // )
+  .put(
+    workspaceController.update,
+    responseController.sendOkResponse,
+    responseController.sendErrorResponse
+  )
   // .delete(
   //   workspaceController.destroy,
   //   // responseController.sendOkResponse,

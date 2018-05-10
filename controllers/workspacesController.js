@@ -30,6 +30,15 @@ function create(req, res, next) {
     .catch(next);
 }
 
+function update(req, res, next) {
+  workspaceDb.update(req.body)
+    .then(data => {
+      res.locals.workspace = data;
+      next();
+    })
+    .catch(next);
+}
+
 // function destroy(req, res, next) {
 //   workspaceDb.destroy(req.params.id)
 //     .then(()=>{
@@ -41,5 +50,6 @@ function create(req, res, next) {
 module.exports = {
   getAll,
   create,
-  getOne
+  getOne,
+  update
 };
