@@ -10,27 +10,16 @@ function getAll(req, res, next) {
     .catch(next);
 }
 
-// function getAll(req, res, next) {
-//   console.log('About to query the DB');
-//   workspaceDb.getAll()
-//     .then(data => {
-//       console.log('Queried DB and got' + data.length + 'results');
-//       res.locals.workspaces = data;
-//       next();
-//     })
-//     .catch(err=> {
-//       next(err);
-//     })
-// }
 
-// function getOne(req, res, next) {
-//   workspaceDb.getOne(req.params.id)
-//     .then(data=> {
-//       res.locals.___ = data;
-//       next();
-//     })
-//     .catch(next);
-// }
+
+function getOne(req, res, next) {
+  workspaceDb.getOne(req.params.id)
+    .then(data=> {
+      res.locals.workspace = data;
+      next();
+    })
+    .catch(next);
+}
 
 function create(req, res, next) {
   workspaceDb.create(req.body)
@@ -51,5 +40,6 @@ function create(req, res, next) {
 
 module.exports = {
   getAll,
-  create
+  create,
+  getOne
 };

@@ -8,18 +8,19 @@ workspaceRouter.route('/')
     responseController.sendOkResponse,
     responseController.sendErrorResponse
   )
+
   .post(
     workspaceController.create,
     responseController.sendOkResponse,
     responseController.sendErrorResponse
   );
 
-  // workspaceRouter.route('/:id')
-  // .get(
-  //   workspaceController.getOne,
-  //   // responseController.sendOkResponse,
-  //   // responseController.sendErrorResponse
-  // )
+  workspaceRouter.route('/:id')
+  .get(
+    workspaceController.getOne,
+    responseController.sendOkResponse,
+    responseController.sendErrorResponse
+  )
   // .put(
   //   workspaceController.update,
   //   // responseController.sendOkResponse,
