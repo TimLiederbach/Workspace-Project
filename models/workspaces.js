@@ -1,9 +1,12 @@
 const db = require('../config/connection');
 
-// function getAll() {
-//   return queryPromise = db.any(`
-//     SELECT * FROM `)
-// }
+function getAll() {
+  console.log('models')
+  return queryPromise = db.any(`
+    SELECT * FROM workspaces`)
+}
+
+// console.log(getAll);
 
 // function getOne(id) {
 //   return queryPromise = db.one(`
@@ -29,10 +32,7 @@ const db = require('../config/connection');
 //   `)
 // }
 
-// module.exports = {
-//   getAll,
-//   getOne,
-//   create,
-//   update,
-//   destroy
-// };
+module.exports = {
+  getAll
+
+};
