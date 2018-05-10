@@ -10,6 +10,19 @@ function getAll(req, res, next) {
     .catch(next);
 }
 
+// function getAll(req, res, next) {
+//   console.log('About to query the DB');
+//   workspaceDb.getAll()
+//     .then(data => {
+//       console.log('Queried DB and got' + data.length + 'results');
+//       res.locals.workspaces = data;
+//       next();
+//     })
+//     .catch(err=> {
+//       next(err);
+//     })
+// }
+
 // function getOne(req, res, next) {
 //   workspaceDb.getOne(req.params.id)
 //     .then(data=> {
