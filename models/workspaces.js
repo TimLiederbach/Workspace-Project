@@ -43,10 +43,17 @@ function update(workspace) {
     `, workspace);
 }
 
+function destroy(id) {
+  return queryPromise = db.none(`
+    DELETE FROM workspaces WHERE w_id = $1
+    `, id
+  );
+}
 
 module.exports = {
   getAll,
   create,
   getOne,
+  destroy,
   update
 };
