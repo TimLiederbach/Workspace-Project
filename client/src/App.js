@@ -2,18 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import WorkspacesList from './components/WorkspacesList'
+import LoginForm from './components/LoginForm'
+import NavBar from './components/NavBar'
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
 
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
 
 
 class App extends Component {
@@ -45,8 +37,10 @@ constructor(props) {
    render() {
      return (
        <div className="App">
-         <h1>workspaces</h1>
-          <WorkspacesList workspaces={this.state.workspaces} />
+        <NavBar />
+        <h1>workspaces</h1>
+        <WorkspacesList workspaces={this.state.workspaces} />
+        <LoginForm />
 
        </div>
      );
