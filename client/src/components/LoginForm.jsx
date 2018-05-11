@@ -29,7 +29,7 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -45,10 +45,10 @@ class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.state)
     this.props.onLogin(this.state);
     this.setState({
-      userName: '',
-      email: '',
+      username: '',
       password: ''
     });
   }
@@ -62,22 +62,14 @@ class LoginForm extends Component {
           <input
             type='text'
             onChange={this.handleInputChange}
-            value={this.state.userName}
-            name='userName'
+            value={this.state.username}
+            name='username'
           />
         </label>
 
 
 
-        <label>
-          Email:
-          <input
-            type='text'
-            onChange={this.handleInputChange}
-            value={this.state.email}
-            name='email'
-          />
-        </label>
+
 
 
         <label>
