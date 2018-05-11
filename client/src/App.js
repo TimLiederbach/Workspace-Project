@@ -4,6 +4,7 @@ import './App.css';
 import WorkspacesList from './components/WorkspacesList'
 import LoginForm from './components/LoginForm'
 import NavBar from './components/NavBar'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class App extends Component {
 
@@ -72,6 +73,7 @@ loginRequest(creds) {
     }
   })
     .then(resp => {
+      console.log('this is resp', resp)
       if (!resp.ok) throw new Error(resp.statusMessage);
       return resp.json();
     })
@@ -81,6 +83,9 @@ loginRequest(creds) {
       this.setState({
         currentUser: jwt.decodeToken(respBody.token).payload
       })
+    .catch(err => {
+      console.log(err);
+    })
     })
 }
 
@@ -91,14 +96,29 @@ handleLogin(creds) {
 
    render() {
      return (
+      <Router>
        <div className="App">
 
         <NavBar />
+
         <h1>workspaces</h1>
         <WorkspacesList workspaces={this.state.workspaces} />
-        <LoginForm />
+        <nav>
+             {this.state.currentUser && <Link to='/new'>Create</Link>}
+       </nav>
+
+        {!this.state.currentUser && <LoginForm
+           onLogin={this.handleLogin}
+         />}
+
+         <Route
+            render={() => (<LoginForm onSubmit={this.handleSubmit} />)}
+            path='/new'
+          />
+
 
        </div>
+       </Router>
      );
    }
  }

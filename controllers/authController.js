@@ -38,19 +38,23 @@ function register(req, res) {
 
 function login(req, res, next) {
   userModel.login(req.body)
-    .catch(err => res.status(401).json({
-      status: 'Error',
-      message: 'Invalid credentials'
-    }))
-    .then(data => tokenService.makeToken({
+
+    .then(data => {
+      console.log(data)
+      return tokenService.makeToken({
       id: data.id,
       username: data.username
-    }))
+    })})
     .then(token => {
       res.json({
         token
       })
-    })
+    }).catch(err => {
+      console.log(err)
+      res.status(401).json({
+      status: 'Error',
+      message: 'Invalid credentials'
+    })})
 }
 
 module.exports = {
