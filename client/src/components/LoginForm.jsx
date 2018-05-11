@@ -47,8 +47,7 @@ class LoginForm extends Component {
     e.preventDefault();
     this.props.onLogin(this.state);
     this.setState({
-      userName: '',
-      email: '',
+      username: '',
       password: ''
     });
   }
@@ -69,15 +68,7 @@ class LoginForm extends Component {
 
 
 
-        <label>
-          Email:
-          <input
-            type='text'
-            onChange={this.handleInputChange}
-            value={this.state.email}
-            name='email'
-          />
-        </label>
+
 
 
         <label>

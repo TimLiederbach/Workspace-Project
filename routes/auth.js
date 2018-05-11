@@ -9,7 +9,12 @@ const authController = require('../controllers/authController');
 //   res.send (`Login in user with email ${req.body.email} and pw ${req.body.password}`);
 // });
 
+authRouter.get('/', authController.restrict, (req, res) => res.json({
+    user: res.locals.user
+}));
+
 authRouter.post('/register', authController.register);
+
 authRouter.post('/login', authController.login);
 
 module.exports = authRouter;

@@ -1,6 +1,7 @@
 const workspaceRouter     = require('express').Router();
 const workspaceController = require('../controllers/workspacesController');
 const responseController  = require('../controllers/responseController');
+const authController = require('../controllers/authController');
 
 workspaceRouter.route('/')
   .get(
@@ -10,6 +11,7 @@ workspaceRouter.route('/')
   )
 
   .post(
+    authController.restrict,
     workspaceController.create,
     responseController.sendOkResponse,
     responseController.sendErrorResponse

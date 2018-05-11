@@ -22,7 +22,10 @@ function getOne(req, res, next) {
 }
 
 function create(req, res, next) {
-  workspaceDb.create(req.body)
+  workspaceDb.create({
+    ...req.body,
+    creator_id: res.locals.user && res.locals.user.id
+  })
     .then(data=> {
       res.locals.workspace = data;
       next();

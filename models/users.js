@@ -21,6 +21,7 @@ function register(credentials)  {
 }
 
 function findByUsername(username) {
+  console.log(`about to check database for ${username}`)
   return db.one(`
     SELECT * FROM users
     WHERE username = $1
