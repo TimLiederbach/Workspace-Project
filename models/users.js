@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 12;
 
 function register(credentials)  {
+  console.log('model-users credentials: ', credentials);
   return bcrypt.hash(credentials.password, saltRounds)
     .then(hash => {
       const newUser = {
@@ -10,10 +11,11 @@ function register(credentials)  {
           email: credentials.email,
           password: hash
       };
+      console.log('model-users - after hashing: ', newUser);
       return db.one(`
         INSERT INTO users (username, email, password)
         VALUES ($/username/, $/email/, $/password/)
-        RETURNING id, username, email
+        RETURNING u_id, username, email
         `, newUser)
     });
 }

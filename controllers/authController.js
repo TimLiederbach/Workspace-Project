@@ -1,4 +1,4 @@
-const tokenServices = require('../services/tokenServices');
+const tokenService = require('../services/tokenService');
 const userModel = require('../models/users');
 
 function receiveToken(req, res, next) {
@@ -9,13 +9,13 @@ function receiveToken(req, res, next) {
 }
 
 function restrict(req, res, next) {
-  tokenServices.verify(req.authToken)
+  tokenService.verify(req.authToken)
   .then(data => {
     res.locals.user = data;
     next();
   })
   .catch(err => res.status(401).json({
-    status 'Error',
+    status: 'Error',
     message: 'Invalid credentials'
   }))
 }
