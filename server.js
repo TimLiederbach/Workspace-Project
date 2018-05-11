@@ -3,7 +3,10 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const workspaceRouter = require('./routes/workspacesRouter');
+//const workspaceRouter = require('./routes/workspacesRouter');
+const authController = require('./controllers/authController');
+
+const apiRouter = require('./routes/api');
 
 const app = express();
 
@@ -13,7 +16,7 @@ const PORT = process.env.PORT || 3001;
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-
+app.use(authController.receiveToken);
 
 
 app.get('/', (req, res) => {
@@ -23,7 +26,8 @@ app.get('/', (req, res) => {
 
 //app.use('/workspaces', workspaceRouter);
 
-app.use('/api/workspaces', workspaceRouter);
+//app.use('/api/workspaces', workspaceRouter);
+app.use('/api', apiRouter);
 
 
 

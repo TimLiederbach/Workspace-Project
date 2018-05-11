@@ -26,7 +26,7 @@ constructor(props) {
   }
 
   fetchWorkspaces() {
-    fetch('/api/workspaces')
+    fetch('/api/workspaces/')
       .then(resp => {
         if (!resp.ok) throw new Error(resp.statusMessage);
         return resp.json();
