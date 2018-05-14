@@ -1,35 +1,13 @@
 import './LoginForm.css';
-
-// import React from 'react'
-// import { Button, Form, Message } from 'semantic-ui-react'
-
-// const FormExampleSuccess = () => (
-//   <Form success>
-//     <Form.Input label='email'
-//         placeholder='joe@schmoe.com'
-//         type='text'
-//         onChange={this.handleInputChange}
-//         value={this.state.email}
-//         name='email'/>
-//     <Message
-//       success
-//       header='Form Completed'
-//       content="You're all signed up for the newsletter"
-//     />
-//     <Button>Submit</Button>
-//   </Form>
-// )
-
-// export default FormExampleSuccess
-
 import React, { Component } from 'react';
 import { Button, Form, Message } from 'semantic-ui-react'
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
+      email: '',
       password: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -49,6 +27,7 @@ class LoginForm extends Component {
     this.props.onLogin(this.state);
     this.setState({
       username: '',
+      email: '',
       password: ''
     });
   }
@@ -68,6 +47,16 @@ class LoginForm extends Component {
         </label>
 
         <label>
+          Email:
+          <input
+            type='email'
+            onChange={this.handleInputChange}
+            value={this.state.email}
+            name='email'
+          />
+        </label>
+
+        <label>
           Password:
           <input
             type='password'
@@ -77,7 +66,7 @@ class LoginForm extends Component {
           />
         </label>
           <br />
-        <Button type='submit' className='login-button'>Login</Button>
+        <Button type='submit' className='register-button'>Register</Button>
         <Message
             success
             header='Form Completed'
@@ -90,4 +79,5 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default RegisterForm;
+

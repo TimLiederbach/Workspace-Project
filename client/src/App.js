@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import jwt from 'jwt-js';
 import './App.css';
-import WorkspacesList from './components/WorkspacesList'
-import LoginForm from './components/LoginForm'
-import NavBar from './components/NavBar'
+import WorkspacesList from './components/WorkspacesList';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
+import NavBar from './components/NavBar';
+import Landing from './components/Landing';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class App extends Component {
@@ -93,15 +95,38 @@ handleLogin(creds) {
   this.loginRequest(creds);
 }
 
-
-   render() {
-     return (
-      <Router>
-       <div className="App">
-
+render() {
+  return (
+    <Router>
+      <div className="App">
         <NavBar />
+        <Route
+          exact path = "/"
+          component = { Landing }
+        />
+        <Route
+          path = "/login"
+          component = { LoginForm }
+        />
+        <Route
+          path = "/register"
+          component = { RegisterForm }
+        />
+        <Route
+          path = "/workspaces"
+          component={(props) => (
+              <WorkspacesList workspaces={this.state.workspaces} />
+            )}
+        />
+      </div>
+    </Router>
+     );
+   }
+ }
 
-        <h1>workspaces</h1>
+ export default App;
+
+/*       <h1>workspaces</h1>
         <WorkspacesList workspaces={this.state.workspaces} />
         <nav>
              {this.state.currentUser && <Link to='/new'>Create</Link>}
@@ -115,12 +140,4 @@ handleLogin(creds) {
             render={() => (<LoginForm onSubmit={this.handleSubmit} />)}
             path='/new'
           />
-
-
-       </div>
-       </Router>
-     );
-   }
- }
-
- export default App;
+*/
