@@ -1,18 +1,17 @@
 import './LoginForm.css';
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { Button, Form, Message } from 'semantic-ui-react'
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
+      email: '',
       password: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-   // this.goToWorkspaces = this.goToWorkspaces.bind(this);
   }
 
   handleInputChange(e) {
@@ -23,26 +22,19 @@ class LoginForm extends Component {
   }
 
   handleSubmit(e) {
-    console.log('handling submit')
     e.preventDefault();
     console.log(this.state)
     this.props.onLogin(this.state);
     this.setState({
       username: '',
-      password: '',
-      isUserLoggedIn: true
+      email: '',
+      password: ''
     });
   }
-
- // goToWorkspaces ()  {
- // {this.props.history.push('/workspaces')}
- // }
-
 
   render() {
     return (
     <Form success className='form'>
-      {this.state.isUserLoggedIn && <Redirect to ='/workspaces' />}
       <form onSubmit={this.handleSubmit}>
         <label>
           User Name:
@@ -51,6 +43,16 @@ class LoginForm extends Component {
             onChange={this.handleInputChange}
             value={this.state.username}
             name='username'
+          />
+        </label>
+
+        <label>
+          Email:
+          <input
+            type='email'
+            onChange={this.handleInputChange}
+            value={this.state.email}
+            name='email'
           />
         </label>
 
@@ -64,12 +66,7 @@ class LoginForm extends Component {
           />
         </label>
           <br />
-        <Button
-          type='submit'
-          className='login-button'
-          // onClick= {this.goToWorkspaces()}
-        >Login
-        </Button>
+        <Button type='submit' className='register-button'>Register</Button>
         <Message
             success
             header='Form Completed'
@@ -82,4 +79,5 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default RegisterForm;
+

@@ -1,6 +1,6 @@
 import React from 'react';
 
- function WorkspaceList(props) {
+ function WorkspacesList(props) {
    return (
      <ul>
 -      <li>Spaces will go here</li>
@@ -15,4 +15,4 @@ import React from 'react';
    )
  }
 
- export default WorkspaceList;
+ export default WorkspacesList;
