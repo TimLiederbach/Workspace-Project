@@ -6,7 +6,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import NavBar from './components/NavBar';
 import Landing from './components/Landing';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, withRouter, Redirect } from 'react-router-dom';
 
 class App extends Component {
 
@@ -16,6 +16,7 @@ constructor(props) {
       workspaces: [],
       currentUser: null
     };
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   fetchWorkspaces() {
@@ -85,9 +86,9 @@ loginRequest(creds) {
       this.setState({
         currentUser: jwt.decodeToken(respBody.token).payload
       })
+    })
     .catch(err => {
       console.log(err);
-    })
     })
 }
 
@@ -106,7 +107,7 @@ render() {
         />
         <Route
           path = "/login"
-          component = { LoginForm }
+          component = { () => (<LoginForm onLogin={this.handleLogin} />)}
         />
         <Route
           path = "/register"
