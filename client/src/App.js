@@ -56,7 +56,8 @@ checkToken()  {
         this.setState({
           currentUser: null
         });
-        this.handleLogin =this.handleLogin.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleRegister = this.handleRegister.bind(this);
       })
 }
 
@@ -92,8 +93,32 @@ loginRequest(creds) {
     })
 }
 
+registerRequest(creds) {
+  console.log('attempting to register');
+  console.log(creds);
+  fetch('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify(creds),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+    .then(resp => {
+      console.log('this is resp', resp)
+      if (!resp.ok) throw new Error(resp.statusMessage);
+      return resp.json();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
 handleLogin(creds) {
   this.loginRequest(creds);
+}
+
+handleRegister(creds) {
+  this.registerRequest(creds);
 }
 
 render() {
@@ -111,7 +136,8 @@ render() {
         />
         <Route
           path = "/register"
-          component = { RegisterForm }
+          component = { () => (<RegisterForm onLogin={this.handleRegister} />)}
+        />
         />
         <Route
           path = "/workspaces"
