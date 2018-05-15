@@ -5,15 +5,10 @@ import { Link } from 'react-router-dom';
 export default class NavBar extends Component {
   constructor(props)  {
     super(props);
-    console.log('navbar', props)
-      this.state = {
-        currentUser: ''
-      }
   }
 
   render() {
-    const isCurrentUser = this.state.currentUser;
-
+    const isCurrentUser = this.props.currentUser;
     const display = isCurrentUser ? (
           <Menu stackable>
             <Menu.Item
@@ -50,13 +45,6 @@ export default class NavBar extends Component {
              Register
             </Link>
           </Menu.Item>
-           <Menu.Item
-              name='Create Workspace'
-            >
-              <Link to = '/workspaces/create'>
-               Create Workspace
-              </Link>
-            </Menu.Item>
           </Menu>
         )
     return (

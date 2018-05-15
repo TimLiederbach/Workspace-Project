@@ -1,11 +1,12 @@
 \c workspaces_db
 
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS workspaces;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
   u_id SERIAL PRIMARY KEY,
-  username VARCHAR (255),
+  username VARCHAR (255) UNIQUE,
   email VARCHAR (255),
   password VARCHAR (255)
 );
