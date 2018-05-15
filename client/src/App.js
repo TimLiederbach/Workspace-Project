@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import jwt from 'jwt-js';
 import './App.css';
+import './components/Weather.css';
 import WorkspacesList from './components/WorkspacesList';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import NavBar from './components/NavBar';
 import Landing from './components/Landing';
+import MapApp from './components/MapApp';
+
+import ReactWeather from 'react-open-weather';
+
+import 'react-open-weather/lib/css/ReactWeather.css';
+
+
 import { BrowserRouter as Router, Route, Link, withRouter, Redirect } from 'react-router-dom';
 
 class App extends Component {
@@ -116,14 +124,32 @@ render() {
         <Route
           path = "/workspaces"
           component={(props) => (
-              <WorkspacesList workspaces={this.state.workspaces} />
-            )}
+              <WorkspacesList workspaces={this.state.workspaces}
         />
+
+
+            )}
+
+
+
+        />
+<ReactWeather
+    forecast="today"
+    apikey="1c255de83bfa4fbc99e195928181505"
+    type="city"
+    city="Brooklyn NY"/>
+
+
       </div>
     </Router>
+
+
      );
    }
  }
+
+
+
 
  export default App;
 
