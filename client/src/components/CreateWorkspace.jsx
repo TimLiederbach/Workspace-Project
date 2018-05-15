@@ -4,12 +4,11 @@ import { Redirect } from 'react-router-dom';
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import { Button, Form, Message } from 'semantic-ui-react';
 
-
 class CreateWorkspace extends Component {
   constructor(props) {
+    console.log(props)
     super(props);
     this.state = {
-      creator_id: '',
       w_name: '',
       address: '',
       photo: '',
@@ -35,9 +34,8 @@ class CreateWorkspace extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state)
-    this.props.onLogin(this.state);
+    this.props.onLogin({...this.state, creator_id: this.props.currentUser.username});
     this.setState({
-      creator_id: '',
       w_name: '',
       address: '',
       photo: '',
@@ -49,6 +47,7 @@ class CreateWorkspace extends Component {
       comments: '',
       overall_rating: ''
     });
+    this.props.history.push('/workspaces')
   }
 
   render() {

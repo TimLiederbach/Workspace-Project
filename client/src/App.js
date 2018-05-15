@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import jwt from 'jwt-js';
 import './App.css';
+import './components/Weather.css';
 import WorkspacesList from './components/WorkspacesList';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import CreateWorkspace from './components/CreateWorkspace';
 import NavBar from './components/NavBar';
 import Landing from './components/Landing';
+import MapApp from './components/MapApp';
+import ReactWeather from 'react-open-weather';
+import 'react-open-weather/lib/css/ReactWeather.css';
 import Workspace from './components/Workspace';
 import { BrowserRouter as Router, Route, Link, withRouter, Redirect } from 'react-router-dom';
 
@@ -16,8 +20,7 @@ constructor(props) {
     super(props);
     this.state = {
       workspaces: [],
-      currentUser: null,
-      creator_id: ''
+      currentUser: null
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
@@ -153,7 +156,8 @@ handleRegister(creds) {
 }
 
 handleCreate(workspace) {
-  this.createWorkspace(workspace);
+  console.log(workspace)
+  // this.createWorkspace(workspace);
 }
 
 render() {
@@ -167,36 +171,50 @@ render() {
         />
         <Route
           path = "/login"
-          component = { () => (<LoginForm onLogin={this.handleLogin} />)}
+          render = { () => (<LoginForm onLogin={this.handleLogin} />)}
         />
         <Route
           path = "/register"
-          component = { () => (<RegisterForm onLogin={this.handleRegister} />)}
+          render = { () => (<RegisterForm onLogin={this.handleRegister} />)}
         />
         <Route
           exact path = "/workspaces"
-          component={(props) => (
+          render={(props) => (
               <WorkspacesList workspaces={this.state.workspaces} />
             )}
         />
         <Route
           path = "/workspaces/create"
-          component = { () => (<CreateWorkspace onLogin={this.handleCreate} />
+          render = { (props) => (
+            <CreateWorkspace
+              currentUser = {this.state.currentUser}
+              history = {props.history}
+              onLogin={this.handleCreate} />
             )}
          />
         <Route
           path = "/workspaces/:id"
-          component={(props) => (
+          render={(props) => (
               <Workspace
               workspace={this.findWorkspace(props.match.params.id)}
               workspaces={this.state.workspaces} />
             )}
           />
+    <ReactWeather
+    forecast="today"
+    apikey="1c255de83bfa4fbc99e195928181505"
+    type="city"
+    city="Brooklyn NY"/>
       </div>
     </Router>
+
+
      );
    }
  }
+
+
+
 
  export default App;
 
