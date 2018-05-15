@@ -1,11 +1,10 @@
 //https://react-slick.neostack.com/
-//Linda: got help from Billy; was told to route to only App.css
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 // import { Carousel } from 'react-responsive-carousel';
 import Slider from "react-slick";
 
-import '../App.css';
+import './SliderCSS.css';
 
 import BPark from '../bryantPark.jpg';
 import Library from '../carousel-library-pic.jpg';
@@ -15,6 +14,14 @@ import Restaurant from '../workspace5.jpeg';
 
 
 class MySlider extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          workspaces: [],
+          currentUser: null
+       };
+     //this.onChange = this.onChange.bind(this);
+    }
     render() {
     var settings = {
       dots: true,
@@ -27,22 +34,22 @@ class MySlider extends Component {
       <Slider {...settings} autoplay>
         <div class= "fullwscreen">
           <img src={BPark} />
-          <h3>3</h3>
+          <h3>1</h3>
         </div>
         <div class= "fullwscreen">
           <img src={Library} />
-          <h3>3</h3>
+          <h3>2</h3>
         </div>
         <div class= "fullwscreen">
           <img src={CoffeeS} />
           <h3>3</h3>
         </div>
         <div class= "fullwscreen">
-          <img src={WorkS}  />
+          <img src={WorkS} />
           <h3>4</h3>
         </div>
         <div class= "fullwscreen">
-          <img src={Restaurant}  />
+          <img src={Restaurant} />
           <h3>5</h3>
         </div>
       </Slider>
