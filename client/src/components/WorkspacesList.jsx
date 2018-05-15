@@ -1,9 +1,10 @@
 import React from 'react';
 
  function WorkspacesList(props) {
+  console.log(props)
    return (
      <ul>
--      <li>Spaces will go here</li>
+      <li>Spaces will go here</li>
       {props.workspaces.map(workspace => (
         <li key={workspace.w_id}>
           <h2>{workspace.w_name}</h2>
