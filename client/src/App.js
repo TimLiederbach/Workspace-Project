@@ -4,6 +4,7 @@ import './App.css';
 import WorkspacesList from './components/WorkspacesList';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import CreateWorkspace from './components/CreateWorkspace';
 import NavBar from './components/NavBar';
 import Landing from './components/Landing';
 import Workspace from './components/Workspace';
@@ -15,10 +16,13 @@ constructor(props) {
     super(props);
     this.state = {
       workspaces: [],
-      currentUser: null
+      currentUser: null,
+      creator_id: ''
     };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
     this.findWorkspace = this.findWorkspace.bind(this);
+
   }
 
   fetchWorkspaces() {
@@ -58,8 +62,6 @@ checkToken()  {
         this.setState({
           currentUser: null
         });
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleRegister = this.handleRegister.bind(this);
       })
 }
 
@@ -122,19 +124,42 @@ registerRequest(creds) {
     })
 }
 
+createWorkspace(workspace) {
+  fetch('/api/workspaces/', {
+    method: 'POST',
+    body: JSON.stringify(workspace),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+    .then(resp => {
+      console.log('this is resp', resp)
+      if (!resp.ok) throw new Error(resp.statusMessage);
+      return resp.json();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
 handleLogin(creds) {
   this.loginRequest(creds);
 }
 
 handleRegister(creds) {
+  console.log(creds)
   this.registerRequest(creds);
+}
+
+handleCreate(workspace) {
+  this.createWorkspace(workspace);
 }
 
 render() {
   return (
     <Router>
       <div className="App">
-        <NavBar />
+        <NavBar currentUser = {this.state.currentUser} />
         <Route
           exact path = "/"
           component = { Landing }
@@ -147,13 +172,17 @@ render() {
           path = "/register"
           component = { () => (<RegisterForm onLogin={this.handleRegister} />)}
         />
-        />
         <Route
-          path = "/workspaces"
+          exact path = "/workspaces"
           component={(props) => (
               <WorkspacesList workspaces={this.state.workspaces} />
             )}
         />
+        <Route
+          path = "/workspaces/create"
+          component = { () => (<CreateWorkspace onLogin={this.handleCreate} />
+            )}
+         />
         <Route
           path = "/workspaces/:id"
           component={(props) => (
@@ -161,7 +190,7 @@ render() {
               workspace={this.findWorkspace(props.match.params.id)}
               workspaces={this.state.workspaces} />
             )}
-        />
+          />
       </div>
     </Router>
      );

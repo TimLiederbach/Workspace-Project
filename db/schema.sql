@@ -13,7 +13,7 @@ CREATE TABLE users (
 CREATE TABLE workspaces (
   w_id SERIAL PRIMARY KEY,
   -- creator_id INTEGER,
-  creator_id INTEGER REFERENCES users (u_id) ON DELETE CASCADE,
+  creator_id VARCHAR(255) REFERENCES users (username) ON DELETE CASCADE,
   w_name VARCHAR (255),
   address VARCHAR (255),
   photo TEXT,
