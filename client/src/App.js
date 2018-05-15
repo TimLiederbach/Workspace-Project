@@ -35,7 +35,6 @@ constructor(props) {
         return resp.json();
       })
       .then(resBody => {
-        console.log(resBody)
         this.setState({
           workspaces: resBody.data
         })
