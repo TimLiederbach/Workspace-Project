@@ -5,7 +5,7 @@ import React from 'react';
      <ul>
 -      <li>Spaces will go here</li>
       {props.workspaces.map(workspace => (
-        <li>
+        <li key={workspace.w_id}>
           <h2>{workspace.w_name}</h2>
           <h2>{workspace.address}</h2>
 
