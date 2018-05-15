@@ -7,6 +7,7 @@ import RegisterForm from './components/RegisterForm';
 import CreateWorkspace from './components/CreateWorkspace';
 import NavBar from './components/NavBar';
 import Landing from './components/Landing';
+import Workspace from './components/Workspace';
 import { BrowserRouter as Router, Route, Link, withRouter, Redirect } from 'react-router-dom';
 
 class App extends Component {
@@ -20,6 +21,8 @@ constructor(props) {
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
+    this.findWorkspace = this.findWorkspace.bind(this);
+
   }
 
   fetchWorkspaces() {
@@ -61,6 +64,13 @@ checkToken()  {
         });
       })
 }
+
+  findWorkspace(id) {
+    console.log(`This is the workspace to select: ${id}`);
+    const index = this.state.workspaces.findIndex((wspace) => wspace.w_id === parseInt(id, 10));
+    console.log('findWorkspace - id, index ', id, index);
+    return index;
+  }
 
 componentDidMount() {
   this.fetchWorkspaces();
@@ -170,8 +180,17 @@ render() {
         />
         <Route
           path = "/workspaces/create"
-          component = { () => (<CreateWorkspace onLogin={this.handleCreate} />)}
-        />
+          component = { () => (<CreateWorkspace onLogin={this.handleCreate} />
+            )}
+         />
+        <Route
+          path = "/workspaces/:id"
+          component={(props) => (
+              <Workspace
+              workspace={this.findWorkspace(props.match.params.id)}
+              workspaces={this.state.workspaces} />
+            )}
+          />
       </div>
     </Router>
      );
