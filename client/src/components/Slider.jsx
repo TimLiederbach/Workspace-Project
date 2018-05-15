@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 // import { Carousel } from 'react-responsive-carousel';
 import Slider from "react-slick";
 
-import './MySlider.css';
+import './SliderCSS.css';
 
 import BPark from '../bryantPark.jpg';
 import Library from '../carousel-library-pic.jpg';
@@ -14,14 +14,14 @@ import Restaurant from '../workspace5.jpeg';
 
 
 class MySlider extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //       workspaces: [],
-    //       currentUser: null
-    //    };
-    //  //this.onChange = this.onChange.bind(this);
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+          workspaces: [],
+          currentUser: null
+       };
+     //this.onChange = this.onChange.bind(this);
+    }
     render() {
     var settings = {
       dots: true,
@@ -33,15 +33,23 @@ class MySlider extends Component {
     return (
       <Slider {...settings} autoplay>
         <div class= "fullwscreen">
-          <img src={CoffeeS} width="100%" height="500px" object-fit= "cover" />
+          <img src={BPark} />
+          <h3>1</h3>
+        </div>
+        <div class= "fullwscreen">
+          <img src={Library} />
+          <h3>2</h3>
+        </div>
+        <div class= "fullwscreen">
+          <img src={CoffeeS} />
           <h3>3</h3>
         </div>
         <div class= "fullwscreen">
-          <img src={WorkS} width="100%" height="500px" object-fit= "cover" />
+          <img src={WorkS} />
           <h3>4</h3>
         </div>
         <div class= "fullwscreen">
-          <img src={Restaurant} width="100%" height="500px" object-fit= "cover" />
+          <img src={Restaurant} />
           <h3>5</h3>
         </div>
       </Slider>
