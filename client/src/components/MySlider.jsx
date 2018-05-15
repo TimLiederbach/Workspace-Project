@@ -1,5 +1,5 @@
 //https://react-slick.neostack.com/
-//Linda: got told to route to only App.css
+//Linda: got help from Billy; was told to route to only App.css
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 // import { Carousel } from 'react-responsive-carousel';
