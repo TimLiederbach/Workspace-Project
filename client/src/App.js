@@ -5,15 +5,13 @@ import './components/Weather.css';
 import WorkspacesList from './components/WorkspacesList';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import CreateWorkspace from './components/CreateWorkspace';
 import NavBar from './components/NavBar';
 import Landing from './components/Landing';
 import MapApp from './components/MapApp';
-
 import ReactWeather from 'react-open-weather';
-
 import 'react-open-weather/lib/css/ReactWeather.css';
-
-
+import Workspace from './components/Workspace';
 import { BrowserRouter as Router, Route, Link, withRouter, Redirect } from 'react-router-dom';
 
 class App extends Component {
@@ -25,6 +23,9 @@ constructor(props) {
       currentUser: null
     };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+    this.findWorkspace = this.findWorkspace.bind(this);
+
   }
 
   fetchWorkspaces() {
@@ -64,9 +65,15 @@ checkToken()  {
         this.setState({
           currentUser: null
         });
-        this.handleLogin =this.handleLogin.bind(this);
       })
 }
+
+  findWorkspace(id) {
+    console.log(`This is the workspace to select: ${id}`);
+    const index = this.state.workspaces.findIndex((wspace) => wspace.w_id === parseInt(id, 10));
+    console.log('findWorkspace - id, index ', id, index);
+    return index;
+  }
 
 componentDidMount() {
   this.fetchWorkspaces();
@@ -100,46 +107,103 @@ loginRequest(creds) {
     })
 }
 
+registerRequest(creds) {
+  console.log('attempting to register');
+  console.log(creds);
+  fetch('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify(creds),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+    .then(resp => {
+      console.log('this is resp', resp)
+      if (!resp.ok) throw new Error(resp.statusMessage);
+      return resp.json();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
+createWorkspace(workspace) {
+  fetch('/api/workspaces/', {
+    method: 'POST',
+    body: JSON.stringify(workspace),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+    .then(resp => {
+      console.log('this is resp', resp)
+      if (!resp.ok) throw new Error(resp.statusMessage);
+      return resp.json();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
 handleLogin(creds) {
   this.loginRequest(creds);
+}
+
+handleRegister(creds) {
+  console.log(creds)
+  this.registerRequest(creds);
+}
+
+handleCreate(workspace) {
+  console.log(workspace)
+  // this.createWorkspace(workspace);
 }
 
 render() {
   return (
     <Router>
       <div className="App">
-        <NavBar />
+        <NavBar currentUser = {this.state.currentUser} />
         <Route
           exact path = "/"
           component = { Landing }
         />
         <Route
           path = "/login"
-          component = { () => (<LoginForm onLogin={this.handleLogin} />)}
+          render = { () => (<LoginForm onLogin={this.handleLogin} />)}
         />
         <Route
           path = "/register"
-          component = { RegisterForm }
+          render = { () => (<RegisterForm onLogin={this.handleRegister} />)}
         />
         <Route
-          path = "/workspaces"
-          component={(props) => (
-              <WorkspacesList workspaces={this.state.workspaces}
-        />
-
-
+          exact path = "/workspaces"
+          render={(props) => (
+              <WorkspacesList workspaces={this.state.workspaces} />
             )}
-
-
-
         />
-<ReactWeather
+        <Route
+          path = "/workspaces/create"
+          render = { (props) => (
+            <CreateWorkspace
+              currentUser = {this.state.currentUser}
+              history = {props.history}
+              onLogin={this.handleCreate} />
+            )}
+         />
+        <Route
+          path = "/workspaces/:id"
+          render={(props) => (
+              <Workspace
+              workspace={this.findWorkspace(props.match.params.id)}
+              workspaces={this.state.workspaces} />
+            )}
+          />
+    <ReactWeather
     forecast="today"
     apikey="1c255de83bfa4fbc99e195928181505"
     type="city"
     city="Brooklyn NY"/>
-
-
       </div>
     </Router>
 

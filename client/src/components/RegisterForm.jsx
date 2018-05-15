@@ -1,5 +1,6 @@
 import './LoginForm.css';
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Button, Form, Message } from 'semantic-ui-react'
 
 class RegisterForm extends Component {
@@ -28,13 +29,15 @@ class RegisterForm extends Component {
     this.setState({
       username: '',
       email: '',
-      password: ''
+      password: '',
+      isUserRegistered: true
     });
   }
 
   render() {
     return (
     <Form success className='form'>
+      {this.state.isUserRegistered && <Redirect to ='/login'/>}
       <form onSubmit={this.handleSubmit}>
         <label>
           User Name:

@@ -1,11 +1,12 @@
 \c workspaces_db
 
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS workspaces;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
   u_id SERIAL PRIMARY KEY,
-  username VARCHAR (255),
+  username VARCHAR (255) UNIQUE,
   email VARCHAR (255),
   password VARCHAR (255)
 );
@@ -13,7 +14,7 @@ CREATE TABLE users (
 CREATE TABLE workspaces (
   w_id SERIAL PRIMARY KEY,
   -- creator_id INTEGER,
-  creator_id INTEGER REFERENCES users (u_id) ON DELETE CASCADE,
+  creator_id VARCHAR(255) REFERENCES users (username) ON DELETE CASCADE,
   w_name VARCHAR (255),
   address VARCHAR (255),
   photo TEXT,
