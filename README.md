@@ -33,13 +33,13 @@ The Workspaces app shows a list of work-friendly locations such as libraries, ca
 ## Wireframes
 
 ### Home Page
-![](./public/homeScreen.png)
+![](./public/1-Landing-Page.png)
 ### Login Page
 ![](./public/login-register.png)
 ### Main Page
 ![](./public/homeScreen.png)
 ### View / Edit / Delete Space
-![](./public/landingPage---Wireframe-cc-Premium.pdf)
+![](./public/3-View.png)
 ## Database Schema
 ![](./public/Workspace-ERD.png)
 ## Components
@@ -48,19 +48,68 @@ Login/register page
 Index page (show all)
 Display/edit/create page (show one)
 ## User Stories
+User wants reviews and commentary on places to work out of.
+User navigates to app and registers.
+User login and views available views of workspaces.
+User views indvidual workspace to review its features, such as wifi speed, outlets, etc.
+User creates a workspace to add his/her review.
+User edits or deletes his/her workspace(s).
+
 ## Technologies Used
 - npm package manager
 - node.js
 - Express.js
 - React and React Router
 ### Core
+
 ### Middleware
+
+- morgan
+- body-parser
+- bcrypt
+- concurrently
+- dotenv
+- express
+- jwt-js
+- jsonwebtoken
+- nodemon
+- slick-carousel
+- react-slick
+- semantic-ui-react
+- semantic-ui-css
+
 ### APIs
 - Google Maps API
 ### Also
 - LucidChart
 - Wireframe CC
 ## Code Snippets
+
+componentDidMount() {
+    // const script = document.createElement("script");
+    //   script.src = "https://maps.googleapis.com/maps/api/APIkeySECRET";
+    //   script.async = true;
+    //   document.body.appendChild(script);
+
+    const mapElement = this.mapElement;
+
+    this.map = new window.google.maps.Map(mapElement, {
+      zoom  : INITIAL_MAP_ZOOM_LEVEL,
+      center: {
+        lat : INITIAL_LOCATION.position.latitude,
+        lng : INITIAL_LOCATION.position.longitude
+      }
+    });
+    this.marker = new window.google.maps.Marker({
+      map: this.map,
+      position: {
+        lat: INITIAL_LOCATION.position.latitude,
+        lng: INITIAL_LOCATION.position.longitude
+      }
+    });
+    this.geocoder = new window.google.maps.Geocoder();
+  }
+
 ## Deployment
 ### MVP
 - User authentication and authorization
