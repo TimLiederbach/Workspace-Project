@@ -6,7 +6,7 @@ function Landing (props)  {
 
 return (
   <div>
-    <h1>This is the cool HD carousel of photos...think about it</h1>
+
     <MySlider />
     <ul>
       <li><Link to='/workspaces'>Workspaces</Link></li>

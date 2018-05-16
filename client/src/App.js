@@ -10,7 +10,7 @@ import NavBar from './components/NavBar';
 import Landing from './components/Landing';
 import MapApp from './components/MapApp';
 import ReactWeather from 'react-open-weather';
-import 'react-open-weather/lib/css/ReactWeather.css';
+
 import Workspace from './components/Workspace';
 import { BrowserRouter as Router, Route, Link, withRouter, Redirect } from 'react-router-dom';
 
@@ -192,6 +192,7 @@ render() {
               currentUser = {this.state.currentUser}
               history = {props.history}
               onLogin={this.handleCreate} />
+
             )}
          />
         <Route
@@ -202,11 +203,8 @@ render() {
               workspaces={this.state.workspaces} />
             )}
           />
-    <ReactWeather
-    forecast="today"
-    apikey="1c255de83bfa4fbc99e195928181505"
-    type="city"
-    city="Brooklyn NY"/>
+
+
       </div>
     </Router>
 

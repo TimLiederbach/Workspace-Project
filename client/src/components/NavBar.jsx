@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './NavBar.css';
 import { Menu, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +11,7 @@ export default class NavBar extends Component {
   render() {
     const isCurrentUser = this.props.currentUser;
     const display = isCurrentUser ? (
-          <Menu stackable>
+          <Menu stackable className='nav'>
             <Menu.Item
               name='Logout'
             >
@@ -54,12 +55,15 @@ export default class NavBar extends Component {
             </Link>
           </Menu.Item>
           </Menu>
+
         )
     return (
       <div>
         { display }
       </div>
     )
+
   }
+
 }
 

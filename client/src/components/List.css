@@ -1,0 +1,9 @@
+li{
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.card{
+  display: flex;
+  margin-left: 10%;
+}
