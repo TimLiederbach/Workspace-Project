@@ -11,7 +11,7 @@ workspaceRouter.route('/')
   )
 
   .post(
-    authController.restrict,
+    // authController.restrict,
     workspaceController.create,
     responseController.sendOkResponse,
     responseController.sendErrorResponse

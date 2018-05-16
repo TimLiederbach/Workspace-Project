@@ -25,6 +25,7 @@ constructor(props) {
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.findWorkspace = this.findWorkspace.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
 
   }
 
@@ -143,6 +144,8 @@ createWorkspace(workspace) {
     .catch(err => {
       console.log(err);
     })
+    console.log('about to fetch workspaces')
+
 }
 
 handleLogin(creds) {
@@ -155,8 +158,8 @@ handleRegister(creds) {
 }
 
 handleCreate(workspace) {
-  console.log(workspace)
-  // this.createWorkspace(workspace);
+  this.createWorkspace(workspace);
+  this.fetchWorkspaces();
 }
 
 render() {
@@ -211,9 +214,6 @@ render() {
      );
    }
  }
-
-
-
 
  export default App;
 

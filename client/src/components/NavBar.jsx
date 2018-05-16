@@ -26,6 +26,14 @@ export default class NavBar extends Component {
                Create Workspace
               </Link>
             </Menu.Item>
+
+            <Menu.Item
+              name='Workspaces'
+            >
+              <Link to = '/workspaces/'>
+              Workspaces
+              </Link>
+            </Menu.Item>
           </Menu>
         ) :
         (
