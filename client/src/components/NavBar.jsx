@@ -15,7 +15,7 @@ export default class NavBar extends Component {
             <Menu.Item
               name='Logout'
             >
-              <Link to="/Logout">
+              <Link to="/">
                 Logout
               </Link>
             </Menu.Item>

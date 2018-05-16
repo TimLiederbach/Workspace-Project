@@ -24,47 +24,34 @@ import './List.css';
 import { Link } from 'react-router-dom';
 import Work from './images/workspace.jpeg';
 
-const WorkspacesList = (props) => (
-
-
-  <Card>
-
-    <Image src={Work}/>
-    <Card.Content>
-      <Card.Header>
-        La Pan Quotidien
-      </Card.Header>
-      <Card.Meta>
-        <span className='date'>
-          Joined in 2015
-        </span>
-      </Card.Meta>
-      <Card.Description>
-       <ul>
-         {props.workspaces.map(workspace => (
-         <Link to={'/workspaces/' + workspace.w_id}>
-         <li key={workspace.w_id}>
-           <h4>{workspace.w_name}</h4>
-           <h4>Address: {workspace.address}</h4>
-           <h4>Rating: {workspace.overall_rating}</h4>
-         </li>
+function WorkspacesList(props) {
+  return(
+    <div className="card-list">
+      {props.workspaces.map(workspace => (
+        <Link to={'/workspaces/' + workspace.w_id}>
+        <Card className="space-card" key={workspace.w_id}>
+          <Image className="card-image"src={workspace.photo}/>
+          <Card.Content className="card-content">
+            <Card.Header>
+              {workspace.w_name}
+            </Card.Header>
+            <Card.Meta>
+              <span className='date'>
+                Rating: {workspace.overall_rating}
+              </span>
+            </Card.Meta>
+            <Card.Description>
+             Address: {workspace.address}
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+          </Card.Content>
+        </Card>
         </Link>
-       ))}
-      </ul>
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-         52 followers
-      </a>
-    </Card.Content>
-
-  </Card>
-
-
-
-)
+      ))}
+    </div>
+  )
+}
 
 export default WorkspacesList
 
