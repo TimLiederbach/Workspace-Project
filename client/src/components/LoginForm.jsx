@@ -1,7 +1,7 @@
 import './LoginForm.css';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Form, Message } from 'semantic-ui-react'
+import { Button, Form, Message, Divider } from 'semantic-ui-react'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -41,6 +41,7 @@ class LoginForm extends Component {
 
   render() {
     return (
+  <div className='create-box'>
     <Form success className='form'>
       {this.state.isUserLoggedIn && <Redirect to ='/workspaces' />}
       <form onSubmit={this.handleSubmit}>
@@ -63,7 +64,7 @@ class LoginForm extends Component {
             name='password'
           />
         </label>
-          <br />
+          <Divider hidden />
         <Button
           type='submit'
           className='login-button'
@@ -78,8 +79,11 @@ class LoginForm extends Component {
 
       </form>
     </Form>
+  </div>
     )
   }
 }
+
+
 
 export default LoginForm;

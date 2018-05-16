@@ -1,5 +1,20 @@
 .map{
-  margin: auto;
-  width: 50%;
-  height: 300px;
+  margin-left: 150px;
+  margin-top: -540px;
+  width: 30%;
+  height: 395px;
 }
+
+.form-group{
+  display: flex;
+  margin-top: -5px;
+  margin-bottom: 55px;
+  margin-left: 10%;
+  padding: 0;
+}
+
+.mapBtn{
+margin-left: 3%;
+}
+
+

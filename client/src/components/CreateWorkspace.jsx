@@ -1,8 +1,9 @@
-import './LoginForm.css';
+import './Create.css';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
-import { Button, Form, Message } from 'semantic-ui-react';
+import { Button, Form, Message, Divider  } from 'semantic-ui-react';
+import MapApp from './MapApp';
 
 class CreateWorkspace extends Component {
   constructor(props) {
@@ -52,17 +53,25 @@ class CreateWorkspace extends Component {
 
   render() {
     return (
+
+<div className='mapContainer' >
+<div className='create-box'>
     <Form success className='form'>
       <form onSubmit={this.handleSubmit}>
+
+      <div className='second-column'>
         <label>
           Workspace Name:
           <input
+            label='Workspace Name'
             type='text'
             onChange={this.handleInputChange}
             value={this.state.w_name}
             name='w_name'
           />
         </label>
+
+       <Divider hidden />
 
         <label>
           Address:
@@ -74,7 +83,8 @@ class CreateWorkspace extends Component {
           />
         </label>
 
-        <br />
+      <Divider hidden />
+
         <label>
           Photo URL:
           <input
@@ -84,7 +94,11 @@ class CreateWorkspace extends Component {
             name='photo'
           />
         </label>
-        <br />
+      </div>
+
+<Divider hidden />
+
+      <div className='second-column'>
         <label>
           Type of Space:
           <input
@@ -94,6 +108,8 @@ class CreateWorkspace extends Component {
             name='type_of_space'
           />
         </label>
+
+      <Divider hidden />
 
         <label>
           Power Outlet Access:
@@ -105,7 +121,8 @@ class CreateWorkspace extends Component {
           />
         </label>
 
-        <label>
+      <Divider hidden />
+         <label>
           Noise Level:
           <input
             type='text'
@@ -114,7 +131,11 @@ class CreateWorkspace extends Component {
             name='noise_level'
           />
         </label>
+      </div>
 
+    <Divider hidden />
+
+      <div className='second-column'>
         <label>
           Wifi Speed:
           <input
@@ -125,6 +146,9 @@ class CreateWorkspace extends Component {
           />
         </label>
 
+
+<Divider hidden />
+
         <label>
           Dog Friendly:
           <input
@@ -134,17 +158,7 @@ class CreateWorkspace extends Component {
             name='dogfriendly'
           />
         </label>
-
-        <label>
-          Comments:
-          <input
-            type='text'
-            onChange={this.handleInputChange}
-            value={this.state.comments}
-            name='comments'
-          />
-        </label>
-
+   <Divider hidden />
         <label>
           Overall Rating (1-5):
           <input
@@ -155,16 +169,34 @@ class CreateWorkspace extends Component {
           />
         </label>
 
-          <br />
-        <Button type='submit' className='create-button'>Save Workspace</Button>
-        <Message
-            success
-            header='Form Completed'
-            content="You created a Workspace"
+
+        </div>
+<Divider hidden />
+        <label>
+          Comments:
+          <input
+            type='text'
+            onChange={this.handleInputChange}
+            value={this.state.comments}
+            name='comments'
           />
+        </label>
+
+          <Divider hidden />
+        <Button type='submit' className='create-button'>Save Workspace</Button>
+
 
       </form>
-    </Form>
+
+  </Form>
+</div>
+
+
+<MapApp />
+</div>
+
+
+
     )
   }
 }

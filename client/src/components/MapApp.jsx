@@ -1,7 +1,6 @@
 import React, { Component}  from 'react';
 import './Map.css';
-
-
+import { Button, Form } from 'semantic-ui-react';
 
 let INITIAL_LOCATION = {
   address: 'New York City',
@@ -11,7 +10,7 @@ let INITIAL_LOCATION = {
   }
 };
 
-let INITIAL_MAP_ZOOM_LEVEL = 15;
+let INITIAL_MAP_ZOOM_LEVEL = 16;
 
 let ATLANTIC_OCEAN = {
   latitude: 29.532804,
@@ -27,6 +26,7 @@ constructor(props) {
     super(props);
     this.state = {
       isGeocodingError: false,
+      address: '',
       foundAddress: INITIAL_LOCATION.address
     };
 
@@ -34,36 +34,21 @@ constructor(props) {
     this.setMapElementReference = this.setMapElementReference.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.setMapElementReference = this.setMapElementReference.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+}
 
+geocodeAddress(address) {
+  this.geocoder.geocode({ 'address': address },
+    function handleResults(results, status) {
+    if (status === window.google.maps.GeocoderStatus.OK) {
 
-
-
-    // this.searchInputElement = this.searchInputElement.bind(this);
-    // this.mapElement = this.mapElement.bind(this);
-  }
-
-// let MapApp = React.createClass({
-//   getInitialState: function () {
-//     return {
-//       isGeocodingError: false,
-//       foundAddress: INITIAL_LOCATION.address
-//     };
-//   },
-
-
-
-  geocodeAddress(address) {
-    this.geocoder.geocode({ 'address': address },
-      function handleResults(results, status) {
-      if (status === window.google.maps.GeocoderStatus.OK) {
-
-        this.setState({
-          foundAddress: results[0].formatted_address,
-          isGeocodingError: false
-        });
-        this.map.setCenter(results[0].geometry.location);
-        this.marker.setPosition(results[0].geometry.location);
-        return;
+      this.setState({
+        foundAddress: results[0].formatted_address,
+        isGeocodingError: false
+      });
+      this.map.setCenter(results[0].geometry.location);
+      this.marker.setPosition(results[0].geometry.location);
+      return;
       }
 
       this.setState({
@@ -84,13 +69,21 @@ constructor(props) {
     }.bind(this));
   }
 
-
-
-
-  handleFormSubmit(submitEvent) {
+handleFormSubmit(submitEvent) {
     submitEvent.preventDefault();
     const address = this.searchInputElement.value;
     this.geocodeAddress(address);
+    this.setState({
+
+      address: ''
+    })
+  }
+
+  handleInputChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
   }
 
 
@@ -142,47 +135,34 @@ constructor(props) {
   render() {
     return (
       <div className="container">
-
-        <div className="row">
-          <div className="col-sm-12">
-
-            <form className="form-inline" onSubmit={this.handleFormSubmit}>
-              <div className="row">
-                <div className="col-xs-8 col-sm-10">
-
-                  <div className="form-group">
-                    <label className="sr-only" htmlFor="address">Address</label>
-                    <input type="text" className="form-control input-lg" id="address" placeholder="London, United Kingdom" ref={this.setSearchInputElementReference} required />
-                  </div>
-
-                </div>
-                <div className="col-xs-4 col-sm-2">
-
-                  <button type="submit" className="btn btn-default btn-lg">
-                    <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
-                  </button>
-
-                </div>
-              </div>
-            </form>
-
+        <Form success  onSubmit={this.handleFormSubmit}>
+          <div className="form-group">
+              <input
+                type="text"
+                name="address"
+                placeholder="New York, New York"
+                ref={this.setSearchInputElementReference}
+                required
+                value={this.state.address}
+                onChange={this.handleInputChange}
+              />
+            </div>
+          <div className="mapBtn">
+            <Button type="submit" className="btn btn-default btn-lg"> Submit </Button>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12">
 
-            {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p>}
+        </Form>
 
-            <div className="map" ref={this.setMapElementReference}> IM THE MAP !</div>
-
-          </div>
-        </div>
-      </div>
+        {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p>}
+        <div className="map" ref={this.setMapElementReference}> </div>
+  </div>
     );
   }
 
 
 };
+
+
 
 
 

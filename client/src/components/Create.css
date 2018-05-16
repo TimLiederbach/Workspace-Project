@@ -1,6 +1,3 @@
-/*https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css*/
-
-
 .form{
   display: inline-flex;
   margin: auto;
@@ -13,13 +10,12 @@
 }
 
 .create-box{
-  display: inline-flex;
-  margin-right: 140px;
+  margin-left: 45%;
   padding-left: 0;
-  padding-right: 0 ;
+  padding-right: 0;
   padding-top: 25px;
   padding-bottom: 15px;
-  width: 45%;
+  width: 50%;
   margin-top: 10%;
   border-style: solid;
   border-color: lightgrey;
