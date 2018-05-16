@@ -166,6 +166,8 @@ render() {
   return (
     <Router>
       <div className="App">
+        <h1 className ='impact-heading'>Workspaces</h1>
+        <h5 className ='impact'>"Workspaces for the digital nomad"</h5>
         <NavBar currentUser = {this.state.currentUser} />
         <Route
           exact path = "/"

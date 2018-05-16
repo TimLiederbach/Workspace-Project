@@ -7,6 +7,17 @@
  object-fit: cover;
 }
 
+.impact-heading {
+  font-family: Impact;
+  margin-top: 25px;
+  font-size: 40px;
+}
+
+.impact {
+  font-family: Impact;
+  margin-top:
+}
+
 .App {
   text-align: center;
 }
