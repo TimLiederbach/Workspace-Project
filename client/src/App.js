@@ -207,6 +207,8 @@ render() {
     apikey="1c255de83bfa4fbc99e195928181505"
     type="city"
     city="Brooklyn NY"/>
+
+    <MapApp />
       </div>
     </Router>
 
